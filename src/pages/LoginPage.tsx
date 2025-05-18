@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { Google } from "lucide-react";
 
 interface LoginPageProps {
   setIsLoggedIn: (value: boolean) => void;
@@ -39,6 +40,21 @@ const LoginPage = ({ setIsLoggedIn }: LoginPageProps) => {
       } else {
         toast.error("Invalid credentials. Try username with password 'admin'");
       }
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  const handleGoogleLogin = () => {
+    setIsLoading(true);
+    
+    // Mock Google authentication
+    setTimeout(() => {
+      const randomName = `User${Math.floor(Math.random() * 1000)}`;
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("username", randomName);
+      setIsLoggedIn(true);
+      toast.success(`Welcome, ${randomName}!`);
+      navigate("/");
       setIsLoading(false);
     }, 1000);
   };
@@ -82,6 +98,26 @@ const LoginPage = ({ setIsLoggedIn }: LoginPageProps) => {
             disabled={isLoading}
           >
             {isLoading ? "Signing in..." : "Sign In"}
+          </Button>
+          
+          <div className="relative my-4">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">Or continue with</span>
+            </div>
+          </div>
+          
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full"
+            onClick={handleGoogleLogin}
+            disabled={isLoading}
+          >
+            <Google className="mr-2" size={16} />
+            Sign in with Google
           </Button>
 
           <div className="text-center text-sm text-gray-500 mt-4">
