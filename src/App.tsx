@@ -11,6 +11,7 @@ import IncomePage from "./pages/IncomePage";
 import ReportsPage from "./pages/ReportsPage";
 import FeedsPage from "./pages/FeedsPage";
 import MilkProductionPage from "./pages/MilkProductionPage";
+import WorkersPage from "./pages/WorkersPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/reports" element={<ReportsPage />} />
           <Route path="/feeds" element={<FeedsPage />} />
           <Route path="/milk-production" element={<MilkProductionPage />} />
+          <Route path="/workers" element={<WorkersPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
